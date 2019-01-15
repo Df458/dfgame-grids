@@ -22,11 +22,11 @@ mesh grid_generate_mesh(const grid* g, alignment_2d align) {
     };
     bounds = aabb_align_point(bounds, vec2_zero, align);
 
-    vt_p mesh_data[(g->rows - 1 + g->columns - 1) * 2];
+    vt_p mesh_data[(g->rows + g->columns + 2) * 2];
 
     // Generate the vertices
-    for(uint16 i = 0; i < g->rows - 1; ++i) {
-        float pos = ((i + 1) * g->dims.y);
+    for(uint16 i = 0; i < g->rows + 1; ++i) {
+        float pos = (i * g->dims.y);
 
         mesh_data[i * 2] = (vt_p) {
             .position = {
@@ -42,9 +42,9 @@ mesh grid_generate_mesh(const grid* g, alignment_2d align) {
         };
     }
 
-    for(uint16 i = 0; i < g->columns - 1; ++i) {
-        float pos = ((i + 1) * g->dims.x);
-        uint16 index = (g->rows - 1 + i);
+    for(uint16 i = 0; i < g->columns + 1; ++i) {
+        float pos = (i * g->dims.x);
+        uint16 index = (g->rows + 1 + i);
 
         mesh_data[index * 2] = (vt_p) {
             .position = {
@@ -61,5 +61,5 @@ mesh grid_generate_mesh(const grid* g, alignment_2d align) {
     }
 
     // Create and return the mesh
-    return mesh_new((g->rows - 1 + g->columns - 1) * 2, mesh_data, NULL);
+    return mesh_new((g->rows + g->columns + 2) * 2, mesh_data, NULL);
 }
