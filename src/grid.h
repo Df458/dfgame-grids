@@ -17,4 +17,10 @@ typedef struct grid {
 // returns: A new mesh, or NULL on failure
 mesh grid_generate_mesh(const grid* g, alignment_2d align);
 
+// Generate a mesh for rendering a grid's points
+// -> g: A reference to the grid struct to generate from
+// -> align: The alignment of the mesh origin
+// returns: A new mesh, or NULL on failure
+mesh grid_generate_points(const grid* g, alignment_2d align);
+
 #endif
