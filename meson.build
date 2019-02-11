@@ -10,6 +10,7 @@ pkgconfig = import('pkgconfig')
 m = compiler.find_library('m', required : false)
 tidy = find_program('clang-tidy', required: false)
 gl = dependency('gl')
+cunit = dependency('cunit')
 
 dfgame      = subproject('dfgame')
 application = dfgame.get_variable('application_game')
@@ -21,6 +22,7 @@ glsl_gen    = dfgame.get_variable('glsl_gen')
 
 args = []
 subdir('src')
+subdir('test')
 subdir('demo')
 
 run_command('ctags', '-R', '.')

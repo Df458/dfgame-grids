@@ -1,6 +1,7 @@
 deps = [ core, graphics, math ]
 src  = [
     'grid.c',
+    'shapes.c',
 ]
 lib = static_library('dfgame_grids', src,
                          dependencies : deps,
